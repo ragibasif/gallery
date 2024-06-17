@@ -1,3 +1,0 @@
-# gallery
-
-![](./images/gallery.png)
