@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+// import "./ExperimentalGallery.css";
 import "./ImageGallery.css";
 
-const ImageGallery = () => {
+const ExperimentalGallery = () => {
   const [images, setImages] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
@@ -72,7 +73,7 @@ const ImageGallery = () => {
   );
 };
 
-export default ImageGallery;
+export default ExperimentalGallery;
 
 // TODO:to be translated
 
