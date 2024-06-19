@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// react hook
 
 const useImagePreloader = (imageUrls) => {
   const [loaded, setLoaded] = useState(false);
