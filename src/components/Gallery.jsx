@@ -1,24 +1,47 @@
 import { useState, useEffect } from "react";
-// import "./ExperimentalGallery.css";
-import "./ImageGallery.css";
+import useImagePreloader from "./useImagePreloader";
+import "./Gallery.css";
 
-const ExperimentalGallery = () => {
-  const [images, setImages] = useState([]);
+const Gallery = () => {
+  const [images, setImages] = useState([])
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
+  const imagesToPreload = [
+    "/src/assets/images/IMG_0686.jpg",
+    "/src/assets/images/IMG_0684.jpg",
+    "/src/assets/images/IMG_0687.jpg",
+    "/src/assets/images/IMG_0689.jpg",
+    "/src/assets/images/IMG_0706.jpg",
+    "/src/assets/images/IMG_0702.jpg",
+    "/src/assets/images/IMG_0630.jpg",
+    "/src/assets/images/IMG_0302.jpg",
+    "/src/assets/images/IMG_0629.jpg",
+    "/src/assets/images/IMG_0628.jpg",
+    "/src/assets/images/IMG_0685.jpg",
+    "/src/assets/images/IMG_0695.jpg",
+    "/src/assets/images/IMG_0683.jpg",
+    "/src/assets/images/IMG_0698.jpg",
+    "/src/assets/images/IMG_0461.jpg",
+    "/src/assets/images/IMG_0301.jpg",
+    "/src/assets/images/IMG_0699.jpg",
+    "/src/assets/images/IMG_0690.jpg",
+    "/src/assets/images/IMG_0303.jpg",
+    "/src/assets/images/IMG_0688.jpg",
+    "/src/assets/images/IMG_0633.jpg",
+    "/src/assets/images/IMG_0300.jpg",
+    "/src/assets/images/IMG_0277.jpg",
+    "/src/assets/images/IMG_0627.jpg",
+    "/src/assets/images/IMG_0299.jpg",
+    "/src/assets/images/IMG_0691.jpg",
+  ];
+
   useEffect(() => {
-    // Fetch images from JSON file
-    fetch("./images.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setImages(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching the JSON file:", error);
-      });
-  }, []);
+    // Simulate an API call to fetch images
+    const fetchedImages = imagesToPreload;
+    setImages(fetchedImages);
+  }, []); // Empty dependency array means this runs once after initial render
 
   useEffect(() => {
     if (images.length === 0) return;
@@ -44,13 +67,22 @@ const ExperimentalGallery = () => {
   const handleOverlayClick = () => {
     setFullscreenImage(null);
   };
-
+  const imagesLoaded = useImagePreloader(imagesToPreload);
   return (
+    <>
+    {!imagesLoaded ? (
+        <div>Loading...</div>
+      ) : (
     <div className="image-container">
+      <div
+        className="cursor-follower"
+        style={{ left: currentPosition.x, top: currentPosition.y }}
+      ></div>
       {images.length > 0 && (
         <img
-          src={images[activeIndex]?.filename}
+          src={images[activeIndex]}
           alt={`Image ${activeIndex}`}
+          draggable="false"
           className={`image ${fullscreenImage ? "hidden" : "active"}`}
           style={{
             left: `${currentPosition.x}px`,
@@ -63,17 +95,21 @@ const ExperimentalGallery = () => {
       {fullscreenImage && (
         <div className="fullscreen-overlay" onClick={handleOverlayClick}>
           <img
-            src={fullscreenImage.filename}
+            src={fullscreenImage}
             alt={`Fullscreen ${fullscreenImage.id}`}
             className="fullscreen-image"
           />
         </div>
       )}
     </div>
+
+      )} 
+    </>
   );
 };
 
-export default ExperimentalGallery;
+export default Gallery;
+
 
 // TODO:to be translated
 
