@@ -6,6 +6,7 @@ const Gallery = () => {
   const [images, setImages] = useState([])
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
+  const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
   const imagesToPreload = [
@@ -49,10 +50,18 @@ const Gallery = () => {
     const handleMouseMove = (e) => {
       if (!fullscreenImage) {
         setCurrentPosition({ x: e.clientX, y: e.clientY });
+        setLastPosition({x:currentPosition.x, y:currentPosition.y});
         setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
       }
     };
-
+    // const handleTouchMove = (e) => {
+    //   const newE = e.touches[0];
+    //   if (!fullscreenImage) {
+    //     setCurrentPosition({ x: newE.clientX, y: newE.clientY });
+    //     setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+    //   }
+    // };
+    // window.addEventListener("ontouchmove", handleTouchMove);
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
@@ -90,7 +99,7 @@ const Gallery = () => {
           }}
           onClick={() => handleImageClick(images[activeIndex])}
         />
-      )}
+      )  }
 
       {fullscreenImage && (
         <div className="fullscreen-overlay" onClick={handleOverlayClick}>
@@ -114,8 +123,6 @@ export default Gallery;
 // TODO:to be translated
 
 /*
-const images = document.getElementsByClassName("image");
-
 // Fetch the JSON file
 fetch("./images.json")
   .then((response) => response.json())
@@ -141,13 +148,13 @@ fetch("./images.json")
     console.error("Error fetching the JSON file:", error);
   });
 
-let globalIndex = 0,
+let activeIndex = 0,
   last = { x: 0, y: 0 };
 
 const activate = (image, x, y) => {
   image.style.left = `${x}px`;
   image.style.top = `${y}px`;
-  image.style.zIndex = globalIndex;
+  image.style.zIndex = activeIndex;
 
   image.dataset.status = "active";
   image.setAttribute("draggable", "false");
@@ -161,14 +168,14 @@ const distanceFromLast = (x, y) => {
 
 const handleOnMove = (e) => {
   if (distanceFromLast(e.clientX, e.clientY) > window.innerWidth / 20) {
-    const lead = images[globalIndex % images.length],
-      tail = images[(globalIndex - 5) % images.length];
+    const lead = images[activeIndex % images.length],
+      tail = images[(activeIndex - 5) % images.length];
 
     activate(lead, e.clientX, e.clientY);
 
     if (tail) tail.dataset.status = "inactive";
 
-    globalIndex++;
+    activeIndex++;
   }
 };
 
