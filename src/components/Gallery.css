@@ -12,47 +12,47 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   height: 100vh;
   margin: 0;
   overflow: hidden;
 }
-.image-container {
+/* .image-container {
   position: relative;
-  /* width: 100vw; */
+  width: 100vw;
   height: 100vh;
   cursor: pointer;
-  overflow: hidden; /* Hide overflow to ensure images don't go out of bounds */
-}
+  overflow: hidden; 
+} */
 
 .image {
   width: 50vmin;
-  position: fixed; /* Position relative to the window */
+  position: absolute;
   transform: translate(
     -50%,
     -50%
   ); /* Center the image at the cursor position */
-  transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease,
-    opacity 0.5s ease;
-  opacity: 0;
-  cursor: pointer;
+  /* transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease,
+    opacity 0.5s ease; */
+  /* opacity: 1; */
+  /* cursor: pointer; */
 }
 
-/* .image[data-status="inactive"] {
+.image[data-status="inactive"] {
   display: none;
 }
 
 .image[data-status="active"] {
   display: block;
-} */
+}
 
-.image.inactive {
+/* .image.inactive {
   opacity: 1;
 }
 .image.active {
   opacity: 1;
-}
+} */
 
 .fullscreen-overlay {
   position: fixed;
