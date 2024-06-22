@@ -117,3 +117,7 @@ If you have any questions, feel free to reach out:
 Email: <your.email@example.com>
 Twitter: @yourhandle
 Thank you for visiting my gallery and for your interest in this project!
+
+## Acknowledgments
+
+[Bridget Pictures](https://bridget.pictures/)

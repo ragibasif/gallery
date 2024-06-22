@@ -65,7 +65,7 @@ const ImageTrail = () => {
           tailIndex >= 0 ? tailIndex : tailIndex + imagesRef.current.length
         ];
 
-      const lerpFactor = 0.2; // Adjust this value for the desired smoothness (0 to 1)
+      const lerpFactor = 1; // Adjust this value for the desired smoothness (0 to 1)
 
       activate(lead, e.clientX, e.clientY, lerpFactor);
 
