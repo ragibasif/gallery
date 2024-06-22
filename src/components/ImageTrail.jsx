@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageSlider = () => {
+const ImageTrail = () => {
   const imagesRef = useRef([]);
   const [globalIndex, setGlobalIndex] = useState(0);
   const [lastPosition, setLastPosition] = useState({ x: 0, y: 0 });
-  const [imagesLoaded, setImagesLoaded] = useState(false); // State to track if images are loaded
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [fullScreenImage, setFullScreenImage] = useState(null);
 
   useEffect(() => {
     const images = document.getElementsByClassName("image");
@@ -73,9 +75,26 @@ const ImageSlider = () => {
     }
   };
 
+  const handleImageClick = (image) => {
+    setFullScreenImage(image);
+    setIsFullScreen(true);
+  };
+
+  const handleExitFullScreen = () => {
+    setIsFullScreen(false);
+    setFullScreenImage(null);
+  };
+
   useEffect(() => {
-    window.addEventListener("mousemove", handleOnMove);
-    window.addEventListener("touchmove", (e) => handleOnMove(e.touches[0]));
+    if (!isFullScreen) {
+      window.addEventListener("mousemove", handleOnMove);
+      window.addEventListener("touchmove", (e) => handleOnMove(e.touches[0]));
+    } else {
+      window.removeEventListener("mousemove", handleOnMove);
+      window.removeEventListener("touchmove", (e) =>
+        handleOnMove(e.touches[0])
+      );
+    }
 
     return () => {
       window.removeEventListener("mousemove", handleOnMove);
@@ -83,7 +102,19 @@ const ImageSlider = () => {
         handleOnMove(e.touches[0])
       );
     };
-  }, [globalIndex, lastPosition]);
+  }, [globalIndex, lastPosition, isFullScreen]);
+
+  useEffect(() => {
+    imagesRef.current.forEach((image) => {
+      image.addEventListener("click", () => handleImageClick(image));
+    });
+
+    return () => {
+      imagesRef.current.forEach((image) => {
+        image.removeEventListener("click", () => handleImageClick(image));
+      });
+    };
+  }, [imagesLoaded]);
 
   if (!imagesLoaded) {
     return (
@@ -100,7 +131,33 @@ const ImageSlider = () => {
     );
   }
 
-  return null; // Since this component manipulates the DOM directly, it doesn't render any JSX
+  return (
+    <>
+      {isFullScreen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+          onClick={handleExitFullScreen}
+        >
+          <img
+            src={fullScreenImage?.getAttribute("src")}
+            alt="Full screen"
+            style={{ maxHeight: "90%", maxWidth: "90%" }}
+          />
+        </div>
+      )}
+    </>
+  );
 };
 
-export default ImageSlider;
+export default ImageTrail;

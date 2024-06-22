@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Image from "./components/Image";
-import ImageSlider from "./components/ImageSlider";
+import ImageTrail from "./components/ImageTrail";
 
 const images = [
   "/src/assets/images/IMG_0687.jpg",
@@ -28,7 +28,7 @@ function App() {
       {images.map((e, idx) => (
         <Image image={e} key={idx} index={idx} />
       ))}
-      <ImageSlider />
+      <ImageTrail />
       {/* <Header /> */}
       {/* <Footer /> */}
     </>
