@@ -134,21 +134,7 @@ const ImageTrail = () => {
   return (
     <>
       {isFullScreen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 9999,
-          }}
-          onClick={handleExitFullScreen}
-        >
+        <div className="fullscreen-overlay" onClick={handleExitFullScreen}>
           <img
             src={fullScreenImage?.getAttribute("src")}
             alt="Full screen"

@@ -1,8 +1,6 @@
 import "./Image.css";
 
 const Image = ({ image, index }) => {
-  console.log(image);
-  console.log(index);
   return (
     <img
       key={index}

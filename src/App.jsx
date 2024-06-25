@@ -25,11 +25,11 @@ const images = [
 function App() {
   return (
     <>
+      {/* <Header /> */}
       {images.map((e, idx) => (
         <Image image={e} key={idx} index={idx} />
       ))}
       <ImageTrail />
-      {/* <Header /> */}
       {/* <Footer /> */}
     </>
   );
