@@ -120,4 +120,4 @@ Thank you for visiting my gallery and for your interest in this project!
 
 ## Acknowledgments
 
-[Bridget Pictures](https://bridget.pictures/)
+[Bridget Pictures](https://bridget.pictures/)https://www.nga.gov/
