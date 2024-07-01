@@ -1,7 +1,7 @@
 import Image from "./Image";
 
 const images = [
-  "/src/assets/images/Albrecht_Duhrer_104.jpg",
+  "/src/assets/images/Albrecht_Durer_104.jpg",
   "/src/assets/images/Alfred_Sisley_110.jpg",
   "/src/assets/images/Amedeo_Modigliani_164.jpg",
   "/src/assets/images/Andrei_Rublev_51.jpg",
