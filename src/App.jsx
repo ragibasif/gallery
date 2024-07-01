@@ -4,14 +4,14 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import ImageTrail from "./components/ImageTrail";
-import Impressionism from "./components/Impressionism";
+import Art from "./components/Art";
 
 function App() {
   return (
     <>
       {/* <Header /> */}
-      {/* <Impressionism /> */}
-      {/* <ImageTrail /> */}
+      <Art />
+      <ImageTrail />
       {/* <Footer /> */}
     </>
   );
