@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      <Impressionism />
-      <ImageTrail />
+      {/* <Impressionism /> */}
+      {/* <ImageTrail /> */}
       {/* <Footer /> */}
     </>
   );

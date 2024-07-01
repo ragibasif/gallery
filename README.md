@@ -120,4 +120,6 @@ Thank you for visiting my gallery and for your interest in this project!
 
 ## Acknowledgments
 
-[Bridget Pictures](https://bridget.pictures/)https://www.nga.gov/
+[Bridget Pictures](https://bridget.pictures/)
+
+https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time
